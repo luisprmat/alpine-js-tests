@@ -12,10 +12,10 @@
 <body>
     <h1>Hola</h1>
 
-    <div x-data="{ open: false }">
-        <button x-on:click="open = !open">Menu</button>
+    <div x-data="data" x-init="start">
+        <button x-on:click="toggle">Menu</button>
 
-        <nav x-show="open" x-on:click.away="open = false">
+        <nav x-show="open" x-on:click.away="close">
             <ul>
                 <li>Item 1</li>
                 <li>Item 2</li>
@@ -24,6 +24,21 @@
             </ul>
         </nav>
     </div>
+
+    <script>
+        const data = () => ({
+            open: null,
+            start() {
+                this.open = false
+            },
+            toggle() {
+                this.open = !this.open
+            },
+            close() {
+                this.open = false
+            }
+        })
+    </script>
 </body>
 
 </html>
